@@ -11,4 +11,3 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
-    git remote add origin https://github.com/harry-nguyen-88/DailyMailFeed.git
