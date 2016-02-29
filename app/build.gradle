@@ -41,6 +41,9 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    // Third party:
+    compile 'com.github.paolorotolo:appintro:3.4.0'
+
     // ANDROID SDK Libs:
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
