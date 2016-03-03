@@ -2,18 +2,13 @@ package com.hoasen.studio.dailymailfeed.AppIntro;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.hoasen.studio.dailymailfeed.AppIntro.Presenter.AppIntroPresenterImpl;
 import com.hoasen.studio.dailymailfeed.AppIntro.Presenter.IAppintroPresenter;
 import com.hoasen.studio.dailymailfeed.AppIntro.View.IAppIntroView;
-import com.hoasen.studio.dailymailfeed.Base.BaseFragment;
-import com.hoasen.studio.dailymailfeed.MainNews.MainActivity;
-import com.hoasen.studio.dailymailfeed.R;
+import com.hoasen.studio.dailymailfeed.MainNews.MainNewsActivity;
 
 import java.util.List;
 
@@ -72,7 +67,7 @@ public class AppIntroActivity extends AppIntro implements IAppIntroView {
 
     @Override
     public void showMainView() {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainNewsActivity.class);
         startActivity(i);
     }
 }
