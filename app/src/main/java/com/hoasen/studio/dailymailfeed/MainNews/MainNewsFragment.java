@@ -2,6 +2,7 @@ package com.hoasen.studio.dailymailfeed.MainNews;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,9 @@ import android.widget.ImageView;
 import com.hoasen.studio.dailymailfeed.Base.BaseFragment;
 import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewItem;
 import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
+import com.hoasen.studio.dailymailfeed.MainNews.Presenter.DailyMailPresenterImpl;
+import com.hoasen.studio.dailymailfeed.MainNews.Presenter.IDailyMailPresenter;
+import com.hoasen.studio.dailymailfeed.MainNews.View.IDailyMailView;
 import com.hoasen.studio.dailymailfeed.Networks.DMNetworkService;
 import com.hoasen.studio.dailymailfeed.NewsDetail.NewDetailFragment;
 import com.hoasen.studio.dailymailfeed.R;
@@ -32,22 +36,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.IDailyMailViewHolderClicks{
+public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.IDailyMailViewHolderClicks,IDailyMailView{
 
     @Bind(R.id.cardList)
     RecyclerView cardList;
     DailyMailAdapter adapter;
+    IDailyMailPresenter iDailyMailPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mainView = mainView == null ? inflater.inflate(R.layout.fragment_main_news, container, false) : mainView;
-
         ButterKnife.bind(this, mainView);
-        setupRecycleList();
 
         return mainView;
+    }
+
+    @Override
+    public void setupView(){
+        iDailyMailPresenter = new DailyMailPresenterImpl();
+        iDailyMailPresenter.setView(this);
+        setupRecycleList();
     }
 
     void setupRecycleList(){
@@ -64,10 +74,12 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
     @Override
     protected void handleLogicForOnceTime() {
         super.handleLogicForOnceTime();
-        loadData();
+        iDailyMailPresenter.loadData();
     }
 
-    void loadData(){
+
+    @Override
+    public void loadData(){
         Call<VnreviewModel> callNote = DMNetworkService.getInstance().getMobileReview();
         callNote.enqueue(new Callback<VnreviewModel>() {
             @Override
@@ -91,9 +103,12 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
 
     @Override
     public void onDailyMailClick(DailyMailAdapter.DailyMailViewHolder viewHolder) {
+        iDailyMailPresenter.gotoDetailFrag(viewHolder);
+    }
 
+    @Override
+    public void gotoDetailFrag(DailyMailAdapter.DailyMailViewHolder viewHolder) {
         NewDetailFragment desFrag = setUpDetailFrag(viewHolder);
-        setExitTransition(new Fade());
 
         DMFragmentManager.getInstance().transactionWithAnimationTo(desFrag,viewHolder.ivNews,getString(R.string.transition_detail_name));
     }
@@ -109,9 +124,12 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
         bundle.putParcelable(ConstantValue.BITMAP_KEY,bm);
         desFrag.setData(bundle);
 
-        desFrag.setSharedElementEnterTransition(new DetailsTransition());
-        desFrag.setEnterTransition(new Fade());
-        desFrag.setSharedElementReturnTransition(new DetailsTransition());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            desFrag.setSharedElementEnterTransition(new DetailsTransition());
+            desFrag.setEnterTransition(new Fade());
+            desFrag.setSharedElementReturnTransition(new DetailsTransition());
+            setExitTransition(new Fade());
+        }
 
         return desFrag;
     }

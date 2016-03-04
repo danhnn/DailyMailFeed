@@ -26,11 +26,16 @@ public class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setupView();
 
         if(islogicHappenOnece == false){
             handleLogicForOnceTime();
             islogicHappenOnece = true;
         }
+    }
+
+    protected void setupView(){
+
     }
 
     protected void handleLogicForOnceTime(){
