@@ -26,8 +26,6 @@ public class NewDetailFragment extends BaseFragment {
     TextView tvTitle;
     @Bind(R.id.tvDescription)
     TextView tvDescription;
-    @Bind(R.id.btViewFull)
-    Button btViewFull;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,9 +39,6 @@ public class NewDetailFragment extends BaseFragment {
         // Inflate the layout for this fragment
         mainView = mainView == null ? inflater.inflate(R.layout.fragment_new_detail, container, false) : mainView;
         ButterKnife.bind(this, mainView);
-        btViewFull.setOnClickListener(v -> {
-
-        });
 
         return mainView;
     }
