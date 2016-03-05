@@ -8,7 +8,7 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.hoasen.studio.dailymailfeed.AppIntro.Presenter.AppIntroPresenterImpl;
 import com.hoasen.studio.dailymailfeed.AppIntro.Presenter.IAppintroPresenter;
 import com.hoasen.studio.dailymailfeed.AppIntro.View.IAppIntroView;
-import com.hoasen.studio.dailymailfeed.MainNews.MainNewsActivity;
+import com.hoasen.studio.dailymailfeed.MainNewsActivity;
 
 import java.util.List;
 

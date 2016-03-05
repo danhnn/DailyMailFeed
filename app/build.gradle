@@ -88,7 +88,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'io.realm:realm-android:0.87.4'
     compile 'com.github.paolorotolo:appintro:3.4.0'
     compile 'com.mikepenz:iconics-core:2.5.8@aar'
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'

@@ -18,14 +18,16 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:id="@+id/ivShared"
             android:src="@mipmap/blog5"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="@dimen/fragment_detail_vertical_margin_bottom"
             />
 
 
         <TextView
+            android:layout_marginBottom="@dimen/fragment_detail_vertical_margin_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"

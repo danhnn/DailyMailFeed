@@ -1,7 +1,10 @@
-package com.hoasen.studio.dailymailfeed.MainNews;
+package com.hoasen.studio.dailymailfeed;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +13,8 @@ import android.view.View;
 import android.view.Window;
 
 
+import com.hoasen.studio.dailymailfeed.AppIntro.AppIntroActivity;
+import com.hoasen.studio.dailymailfeed.MainNews.MainNewsFragment;
 import com.hoasen.studio.dailymailfeed.NewsDetail.NewDetailFragment;
 import com.hoasen.studio.dailymailfeed.R;
 import com.hoasen.studio.dailymailfeed.Utilities.ConstantValue;
@@ -32,12 +37,14 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 public class MainNewsActivity extends AppCompatActivity {
 
     protected Drawer result;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main_news);
+        context = getApplicationContext();
 
         setupFragmentManager();
         settupDrawer();
@@ -69,10 +76,9 @@ public class MainNewsActivity extends AppCompatActivity {
                 .build();
 
         PrimaryDrawerItem itemHome = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(GoogleMaterial.Icon.gmd_wb_sunny)
-                .withBadge("19").withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700));
-        PrimaryDrawerItem itemAbout = new PrimaryDrawerItem().withName(R.string.drawer_item_about).withIcon(GoogleMaterial.Icon.gmd_account_box);
+                .withBadge("7").withBadgeStyle(new BadgeStyle().withTextColor(Color.WHITE).withColorRes(R.color.md_red_700));
         PrimaryDrawerItem itemTutorial = new PrimaryDrawerItem().withName(R.string.drawer_item_tutorial).withIcon(GoogleMaterial.Icon.gmd_account_box);
-        SecondaryDrawerItem itemSetting =  new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(FontAwesome.Icon.faw_github);
+        SecondaryDrawerItem itemGithub =  new SecondaryDrawerItem().withName(R.string.drawer_item_github).withIcon(FontAwesome.Icon.faw_github);
 
         //create the drawer and remember the `Drawer` result object
         result = new DrawerBuilder()
@@ -81,15 +87,20 @@ public class MainNewsActivity extends AppCompatActivity {
                 .withToolbar(myToolbar)
                 .addDrawerItems(
                         itemHome,
-                        itemAbout,
                         itemTutorial,
                         new DividerDrawerItem(),
-                        itemSetting
+                        itemGithub
                 )
                 .withOnDrawerItemClickListener((view, position, drawerItem) -> {
                     switch (position){
                         case 1:
                             DMFragmentManager.getInstance().transactionTo(ConstantValue.FRAGMENT_HOME);
+                            break;
+                        case 2:
+                            launchAppintro();
+                            break;
+                        case 4:
+                            openGithubPage();
                             break;
                         default:
                             DMFragmentManager.getInstance().transactionTo(ConstantValue.FRAGMENT_HOME);
@@ -101,6 +112,16 @@ public class MainNewsActivity extends AppCompatActivity {
                 })
                 .build();
         result.setSelection(1,true);
+    }
+
+    void launchAppintro(){
+        Intent i = new Intent(MainNewsActivity.this, AppIntroActivity.class);
+        startActivity(i);
+    }
+
+    void openGithubPage(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/harry-nguyen-88"));
+        startActivity(browserIntent);
     }
 
     @Override

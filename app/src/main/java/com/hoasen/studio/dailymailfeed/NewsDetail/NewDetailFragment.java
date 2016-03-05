@@ -59,7 +59,7 @@ public class NewDetailFragment extends BaseFragment implements INewsDetailView{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iNewsDetailPresenter.showSnackBar(view);
+                iNewsDetailPresenter.showSnackBar();
             }
         });
     }
@@ -85,8 +85,8 @@ public class NewDetailFragment extends BaseFragment implements INewsDetailView{
     }
 
     @Override
-    public void showSnackBar(View view) {
-        Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_SHORT)
+    public void showSnackBar() {
+        Snackbar.make(mainView, "Here's a Snackbar", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
     }
 

@@ -7,5 +7,5 @@ import android.view.View;
  */
 public interface INewsDetailView {
     void updateData();
-    void showSnackBar(View view);
+    void showSnackBar();
 }

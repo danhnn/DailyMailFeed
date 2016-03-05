@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.hoasen.studio.dailymailfeed.Base.BaseFragment;
 import com.hoasen.studio.dailymailfeed.R;
+import com.hoasen.studio.dailymailfeed.Utilities.ConstantValue;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,14 +44,14 @@ public class AppIntroductionFragment extends BaseFragment {
 
     void setData(){
         Bundle args = getArguments();
-        String title = args.getString("intro_title");
-        int imageType = args.getInt("intro_image");
+        String title = args.getString(ConstantValue.INTRO_TITLE_KEY);
+        int imageType = args.getInt(ConstantValue.INTRO_IMAGE_KEY);
         textView.setText(title);
         setImageView(imageType);
     }
 
     void setImageView(int imageType){
-        int imageID = 0;
+        int imageID;
         switch (imageType){
             case 0:
                 imageID = R.mipmap.blog2;

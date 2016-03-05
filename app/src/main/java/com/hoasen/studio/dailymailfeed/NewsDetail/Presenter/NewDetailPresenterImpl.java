@@ -12,13 +12,13 @@ public class NewDetailPresenterImpl implements INewsDetailPresenter {
     INewsDetailView view;
 
     @Override
-    public void showSnackBar(View view) {
-        this.view.showSnackBar(view);
+    public void showSnackBar() {
+        this.view.showSnackBar();
     }
 
     @Override
     public void updateData() {
-        this.view.updateData();
+        view.updateData();
     }
 
     @Override

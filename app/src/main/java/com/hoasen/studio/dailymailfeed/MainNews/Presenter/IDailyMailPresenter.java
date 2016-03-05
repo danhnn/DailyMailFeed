@@ -1,5 +1,7 @@
 package com.hoasen.studio.dailymailfeed.MainNews.Presenter;
 
+import android.content.Context;
+
 import com.hoasen.studio.dailymailfeed.Base.IPresenter;
 import com.hoasen.studio.dailymailfeed.MainNews.DailyMailAdapter;
 import com.hoasen.studio.dailymailfeed.MainNews.View.IDailyMailView;
@@ -10,4 +12,5 @@ import com.hoasen.studio.dailymailfeed.MainNews.View.IDailyMailView;
 public interface IDailyMailPresenter extends IPresenter<IDailyMailView> {
     void gotoDetailFrag(DailyMailAdapter.DailyMailViewHolder viewHolder);
     void loadData();
+    boolean isHasInternet();
 }

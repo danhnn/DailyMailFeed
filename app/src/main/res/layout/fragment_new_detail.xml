@@ -4,6 +4,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:padding="10dp"
         android:paddingBottom="0dp"
@@ -13,7 +14,8 @@
         >
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/blog2"
             android:id="@+id/ivShared"
             android:transitionName="@string/transition_detail_name"
