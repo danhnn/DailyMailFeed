@@ -1,5 +1,7 @@
 package com.hoasen.studio.dailymailfeed.Networks;
 
+import android.content.Context;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -25,7 +27,7 @@ public class DMNetworkServiceMock {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         // set your desired log level
-        logging.setLevel(HttpLoggingInterceptor.Level.NONE);
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(logging);  // <-- this is the important line!
         httpClient.interceptors().add(new FakeInterceptor());

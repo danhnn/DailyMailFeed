@@ -1,9 +1,16 @@
 package com.hoasen.studio.dailymailfeed.Networks;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.provider.MediaStore;
+
 import com.hoasen.studio.dailymailfeed.BuildConfig;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
+import java.nio.charset.Charset;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -17,37 +24,21 @@ import okhttp3.ResponseBody;
  */
 public class FakeInterceptor implements Interceptor {
     // FAKE RESPONSES.
-    private final static String TEACHER_ID_1 = "{\"id\":1,\"age\":28,\"name\":\"Victor Apoyan\"}";
-    private final static String TEACHER_ID_2 = "{\"id\":1,\"age\":16,\"name\":\"Tovmas Apoyan\"}";
+     String xmlString = "<?xml version=\"1.0\" encoding=\"utf-8\"?><a><b></b><c></c></a>";
+    static public String responseString = "";
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response response = null;
         if(BuildConfig.DEBUG) {
-            String responseString;
-            // Get Request URI.
-            final URI uri = chain.request().url().uri();
-            // Get Query String.
-            final String query = uri.getQuery();
-            // Parse the Query String.
-            final String[] parsedQuery = query.split("=");
-            if(parsedQuery[0].equalsIgnoreCase("id") && parsedQuery[1].equalsIgnoreCase("1")) {
-                responseString = TEACHER_ID_1;
-            }
-            else if(parsedQuery[0].equalsIgnoreCase("id") && parsedQuery[1].equalsIgnoreCase("2")){
-                responseString = TEACHER_ID_2;
-            }
-            else {
-                responseString = "";
-            }
 
             response = new Response.Builder()
                     .code(200)
                     .message(responseString)
                     .request(chain.request())
                     .protocol(Protocol.HTTP_1_0)
-                    .body(ResponseBody.create(MediaType.parse("application/json"), responseString.getBytes()))
-                    .addHeader("content-type", "application/json")
+                    .body(ResponseBody.create(MediaType.parse("application/xml"), responseString.getBytes()))
+                    .addHeader("content-type", "application/xml")
                     .build();
         }
         else {
@@ -56,4 +47,6 @@ public class FakeInterceptor implements Interceptor {
 
         return response;
     }
+
+
 }
