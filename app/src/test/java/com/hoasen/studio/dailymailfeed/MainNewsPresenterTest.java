@@ -1,7 +1,6 @@
 package com.hoasen.studio.dailymailfeed;
 
 import android.content.Context;
-import android.os.Environment;
 
 import com.hoasen.studio.dailymailfeed.MainNews.DailyMailAdapter;
 import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
@@ -9,44 +8,38 @@ import com.hoasen.studio.dailymailfeed.MainNews.Presenter.DailyMailPresenterImpl
 import com.hoasen.studio.dailymailfeed.MainNews.Presenter.IDailyMailPresenter;
 import com.hoasen.studio.dailymailfeed.MainNews.View.IDailyMailView;
 import com.hoasen.studio.dailymailfeed.Networks.DMAPIService;
-import com.hoasen.studio.dailymailfeed.Networks.DMNetworkService;
+import com.hoasen.studio.dailymailfeed.Networks.DMNetworkClient;
 import com.hoasen.studio.dailymailfeed.Networks.DMNetworkServiceMock;
 import com.hoasen.studio.dailymailfeed.Networks.FakeInterceptor;
-import com.hoasen.studio.dailymailfeed.Utilities.DMLog;
-import com.hoasen.studio.dailymailfeed.Utilities.Utilities;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.robolectric.Robolectric;
 import org.robolectric.RuntimeEnvironment;
-import org.robolectric.shadows.ShadowApplication;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
 
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.observables.BlockingObservable;
 import rx.observers.TestSubscriber;
-import rx.schedulers.Schedulers;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Harry Nguyen on 05-Mar-16.
@@ -60,19 +53,26 @@ public class MainNewsPresenterTest extends ApplicationTestCase {
     @Mock
     DMAPIService service;
 
-
     IDailyMailPresenter iDailyMailPresenter;
     public static Context context = RuntimeEnvironment.application;
+
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
         iDailyMailPresenter = spy(new DailyMailPresenterImpl());
         iDailyMailPresenter.setView(view);
+
     }
 
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+    }
+
+
     @Test
-    public void loadData(){
+    public void loadDataTest(){
         doReturn(true).when(iDailyMailPresenter).isHasInternet();
         iDailyMailPresenter.loadData();
 
@@ -94,10 +94,9 @@ public class MainNewsPresenterTest extends ApplicationTestCase {
         doReturn(Observable.just(response)).when(service).getMobileReview();
 
         TestSubscriber testSubscriber = new TestSubscriber();
-        DMNetworkService.getInstance().getMobileReview().subscribe(testSubscriber);
+        DMNetworkClient.getInstance().getMobileReview().subscribe(testSubscriber);
         testSubscriber.assertNoErrors();
         testSubscriber.assertCompleted();
-
     }
 
     @Test
@@ -125,12 +124,14 @@ public class MainNewsPresenterTest extends ApplicationTestCase {
         }
         return xmlString;
     }
-/*
+
+
+
     @Test
     public void goToDetailFragmentTest(){
         iDailyMailPresenter.gotoDetailFrag(viewHolder);
         verify(view).gotoDetailFrag(viewHolder);
     }
-*/
+
 
 }

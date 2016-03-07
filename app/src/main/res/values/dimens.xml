@@ -4,4 +4,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fragment_detail_vertical_margin_bottom">10dp</dimen>
+    <dimen name="appbar_height">200dp</dimen>
 </resources>

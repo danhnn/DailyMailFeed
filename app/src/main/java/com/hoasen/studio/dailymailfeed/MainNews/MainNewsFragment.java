@@ -19,23 +19,15 @@ import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
 import com.hoasen.studio.dailymailfeed.MainNews.Presenter.DailyMailPresenterImpl;
 import com.hoasen.studio.dailymailfeed.MainNews.Presenter.IDailyMailPresenter;
 import com.hoasen.studio.dailymailfeed.MainNews.View.IDailyMailView;
-import com.hoasen.studio.dailymailfeed.Networks.DMNetworkService;
 import com.hoasen.studio.dailymailfeed.NewsDetail.NewDetailFragment;
 import com.hoasen.studio.dailymailfeed.R;
 import com.hoasen.studio.dailymailfeed.Utilities.ConstantValue;
 import com.hoasen.studio.dailymailfeed.Utilities.DMFragmentManager;
 import com.hoasen.studio.dailymailfeed.Utilities.DetailsTransition;
-import com.hoasen.studio.dailymailfeed.Utilities.Utilities;
 
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.IDailyMailViewHolderClicks, IDailyMailView {
 
