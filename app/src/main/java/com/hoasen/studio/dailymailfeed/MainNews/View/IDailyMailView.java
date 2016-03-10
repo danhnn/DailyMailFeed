@@ -9,7 +9,7 @@ import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
 public interface IDailyMailView {
 
     void gotoDetailFrag(DailyMailAdapter.DailyMailViewHolder viewHolder);
-    void loadData(VnreviewModel model);
+    void showData(VnreviewModel model);
     void showNotHaveInternetMsg();
 
 }

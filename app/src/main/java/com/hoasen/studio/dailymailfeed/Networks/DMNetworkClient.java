@@ -1,7 +1,11 @@
 package com.hoasen.studio.dailymailfeed.Networks;
 
+import com.hoasen.studio.dailymailfeed.Injection.MyApplication;
 import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
 
+import javax.inject.Inject;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -18,6 +22,9 @@ public class DMNetworkClient {
     static String baseURL = "http://vnreview.vn/feed/-/rss/13612/";
     DMAPIService service = null;
 
+    @Inject
+    Interceptor interceptor;
+
     static public DMNetworkClient getInstance(){
         if(instance == null){
             return new DMNetworkClient();
@@ -27,12 +34,14 @@ public class DMNetworkClient {
     }
 
     DMNetworkClient(){
+        MyApplication.getInstance().getAppComponent().inject(this);
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         // set your desired log level
         logging.setLevel(HttpLoggingInterceptor.Level.NONE);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(logging);  // <-- this is the important line!
+        httpClient.addInterceptor(interceptor);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)

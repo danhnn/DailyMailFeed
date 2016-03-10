@@ -81,7 +81,7 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
 
 
     @Override
-    public void loadData(VnreviewModel model) {
+    public void showData(VnreviewModel model) {
         adapter.setData(model.channel.listItem);
         adapter.notifyDataSetChanged();
         onItemsLoadComplete();

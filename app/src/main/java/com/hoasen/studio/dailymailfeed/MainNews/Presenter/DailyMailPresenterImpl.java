@@ -36,10 +36,10 @@ public class DailyMailPresenterImpl implements IDailyMailPresenter {
 
 
         Observable<VnreviewModel> callNote = DMNetworkClient.getInstance().getMobileReview();
-        callNote.subscribeOn(Schedulers.newThread())
+        callNote.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(vnreviewModel -> {
-                    view.loadData(vnreviewModel);
+                    view.showData(vnreviewModel);
                 });
 
 
