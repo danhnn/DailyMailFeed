@@ -1,6 +1,6 @@
-package com.hoasen.studio.dailymailfeed.Injection;
+package com.hoasen.studio.dailymailfeed.Inject;
 
-import com.hoasen.studio.dailymailfeed.Injection.Interceptor.NormalInterceptor;
+import com.hoasen.studio.dailymailfeed.Inject.Interceptor.NormalInterceptor;
 
 import javax.inject.Singleton;
 

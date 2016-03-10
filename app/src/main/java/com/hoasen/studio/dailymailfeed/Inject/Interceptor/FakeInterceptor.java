@@ -1,14 +1,6 @@
-package com.hoasen.studio.dailymailfeed.Injection.Interceptor;
-
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.provider.MediaStore;
+package com.hoasen.studio.dailymailfeed.Inject.Interceptor;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.nio.charset.Charset;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;

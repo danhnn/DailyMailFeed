@@ -1,11 +1,9 @@
 package com.hoasen.studio.dailymailfeed;
 
-import android.content.Context;
-
-import com.hoasen.studio.dailymailfeed.Injection.AppClientComponent;
-import com.hoasen.studio.dailymailfeed.Injection.DMNetworkClientModuleTest;
-import com.hoasen.studio.dailymailfeed.Injection.DaggerDMNetworkClientComponentTest;
-import com.hoasen.studio.dailymailfeed.Injection.MyApplication;
+import com.hoasen.studio.dailymailfeed.Inject.AppClientComponent;
+import com.hoasen.studio.dailymailfeed.Inject.DMNetworkClientModuleTest;
+import com.hoasen.studio.dailymailfeed.Inject.DaggerDMNetworkClientComponentTest;
+import com.hoasen.studio.dailymailfeed.Inject.MyApplication;
 import com.hoasen.studio.dailymailfeed.MainNews.DailyMailAdapter;
 import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
 import com.hoasen.studio.dailymailfeed.MainNews.Presenter.DailyMailPresenterImpl;
@@ -17,12 +15,6 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.robolectric.RuntimeEnvironment;
-
-import rx.Scheduler;
-import rx.plugins.RxJavaPlugins;
-import rx.plugins.RxJavaSchedulersHook;
-import rx.plugins.RxJavaTestPlugins;
-import rx.schedulers.Schedulers;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;

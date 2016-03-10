@@ -50,6 +50,9 @@ public class MainNewsActivity extends AppCompatActivity {
         settupDrawer();
     }
 
+    public Drawer getDrawer(){
+        return result;
+    }
     void setupFragmentManager(){
         DMFragmentManager.getInstance().setContext(this);
         DMFragmentManager.getInstance().settupHolderContainer(R.id.container);

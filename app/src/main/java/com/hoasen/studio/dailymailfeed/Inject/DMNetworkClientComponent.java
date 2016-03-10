@@ -1,9 +1,8 @@
-package com.hoasen.studio.dailymailfeed.Injection;
+package com.hoasen.studio.dailymailfeed.Inject;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import okhttp3.Interceptor;
 
 /**
  * Created by Harry Nguyen on 09-Mar-16.

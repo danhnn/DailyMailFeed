@@ -1,4 +1,4 @@
-package com.hoasen.studio.dailymailfeed.Injection;
+package com.hoasen.studio.dailymailfeed.Inject;
 
 import javax.inject.Singleton;
 

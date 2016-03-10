@@ -1,7 +1,7 @@
-package com.hoasen.studio.dailymailfeed.Injection;
+package com.hoasen.studio.dailymailfeed.Inject;
 
 
-import com.hoasen.studio.dailymailfeed.Injection.Interceptor.FakeInterceptor;
+import com.hoasen.studio.dailymailfeed.Inject.Interceptor.FakeInterceptor;
 import com.hoasen.studio.dailymailfeed.Utilities.Utilities;
 
 import javax.inject.Singleton;

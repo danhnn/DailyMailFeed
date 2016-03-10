@@ -1,6 +1,6 @@
 package com.hoasen.studio.dailymailfeed.Networks;
 
-import com.hoasen.studio.dailymailfeed.Injection.MyApplication;
+import com.hoasen.studio.dailymailfeed.Inject.MyApplication;
 import com.hoasen.studio.dailymailfeed.MainNews.Model.VnreviewModel;
 
 import javax.inject.Inject;
