@@ -1,9 +1,15 @@
 package com.hoasen.studio.dailymailfeed;
 
+import com.hoasen.studio.dailymailfeed.Inject.AppClientComponent;
+import com.hoasen.studio.dailymailfeed.Inject.DMNetworkClientModuleTest;
+import com.hoasen.studio.dailymailfeed.Inject.DaggerDMNetworkClientComponentTest;
+import com.hoasen.studio.dailymailfeed.Inject.MyApplication;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.lang.reflect.Field;
@@ -27,29 +33,11 @@ public abstract class ApplicationTestCase {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        overiderRXAndroidThreading();
     }
 
-    void overiderRXAndroidThreading(){
-        RxJavaTestPlugins.resetPlugins();
-        RxJavaPlugins.getInstance().registerSchedulersHook(new RxJavaSchedulersHook() {
-            @Override
-            public Scheduler getIOScheduler() {
-                return Schedulers.immediate();
-            }
-        });
-
-        RxAndroidPlugins.getInstance().registerSchedulersHook(new RxAndroidSchedulersHook() {
-            @Override
-            public Scheduler getMainThreadScheduler() {
-                return Schedulers.immediate();
-            }
-        });
-
-    }
     @After
     public void tearDown() throws Exception {
-        RxAndroidPlugins.getInstance().reset();
+
     }
 
     /**

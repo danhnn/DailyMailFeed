@@ -12,15 +12,12 @@ import android.view.View;
 public class BaseFragment extends Fragment {
     Bundle data = null;
     protected View mainView = null;
-
     public void setData(Bundle data){
         this.data = data;
     }
-
     public Bundle getData(){
         return data;
     }
-
     boolean islogicHappenOnece = false;
 
     @Override

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 23
@@ -32,6 +33,62 @@ android {
 
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+
+def coverageSourceDirs = [
+        'src/main/java',
+]
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    classDirectories = fileTree(
+            dir: './build/intermediates/classes/debug',
+            includes: [
+                    'com/hoasen/studio/dailymailfeed/**/*.class'
+            ],
+            excludes: [
+                    '**/R*.class',
+                    '**/BuildConfig.class',
+                    '**/*$InjectAdapter.class',
+                    '**/*$ModuleAdapter.class',
+                    '**/*$ViewInjector*.class',
+                    '**/*$ViewBinder*.class',
+                    '**/*$Lambda*.class',
+                    'com/hoasen/studio/dailymailfeed/MainNewsActivity.class',
+                    'com/hoasen/studio/dailymailfeed/SplashActivity.class'
+            ])
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+
+    def renamedFilesMap = [:]
+
+    // Hacky fix for issue: https://code.google.com/p/android/issues/detail?id=69174.
+    // Rename files with '$$' before generating report, and then rename back after
+    doFirst {
+        new File('app/build/intermediates/classes/debug').eachFileRecurse { file ->
+            if (file.name.contains('$$')) {
+                def oldPath = file.path
+                def newPath = oldPath.replace('$$', '$')
+                file.renameTo(newPath)
+                renamedFilesMap[newPath] = oldPath
+            }
+        }
+    }
+
+    doLast {
+        renamedFilesMap.each() {
+            newPath, oldPath ->
+                new File(newPath).renameTo(oldPath)
+        }
     }
 }
 

@@ -28,12 +28,10 @@ public class DailyMailPresenterImpl implements IDailyMailPresenter {
 
     @Override
     public void loadData() {
-
         if (isHasInternet() == false) {
             view.showNotHaveInternetMsg();
             return;
         }
-
 
         Observable<VnreviewModel> callNote = DMNetworkClient.getInstance().getMobileReview();
         callNote.subscribeOn(Schedulers.io())
@@ -41,8 +39,6 @@ public class DailyMailPresenterImpl implements IDailyMailPresenter {
                 .subscribe(vnreviewModel -> {
                     view.showData(vnreviewModel);
                 });
-
-
     }
 
     @Override

@@ -53,6 +53,7 @@ public class MainNewsActivity extends AppCompatActivity {
     public Drawer getDrawer(){
         return result;
     }
+
     void setupFragmentManager(){
         DMFragmentManager.getInstance().setContext(this);
         DMFragmentManager.getInstance().settupHolderContainer(R.id.container);
@@ -123,7 +124,7 @@ public class MainNewsActivity extends AppCompatActivity {
     }
 
     void openGithubPage(){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/harry-nguyen-88"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(ConstantValue.GITHUB_URL));
         startActivity(browserIntent);
     }
 

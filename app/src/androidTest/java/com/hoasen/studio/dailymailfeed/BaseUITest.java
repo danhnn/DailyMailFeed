@@ -5,6 +5,7 @@ import android.test.suitebuilder.annotation.LargeTest;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 /**
@@ -13,6 +14,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
+@Ignore
 public class BaseUITest {
     final int delayTime = 500;
 

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.hoasen.studio.dailymailfeed.AppIntro.AppIntroActivity;
+import com.hoasen.studio.dailymailfeed.Utilities.ConstantValue;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -15,27 +16,25 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //  Declare a new thread to do a preference check
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //  Launch app intro
-                if(isFirstStart()){
-                    launchAppIntro();
-                }else{
-                    launchMainActivity();
-                }
+        launchLogic();
+    }
+
+    void launchLogic(){
+        Thread t = new Thread(() -> {
+            //  Launch app intro
+            if(isFirstStart()){
+                launchAppIntro();
+            }else{
+                launchMainActivity();
             }
         });
-
-        // Start the thread
         t.start();
     }
 
     boolean isFirstStart(){
         SharedPreferences getPrefs = PreferenceManager
                 .getDefaultSharedPreferences(getBaseContext());
-        boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
+        boolean isFirstStart = getPrefs.getBoolean(ConstantValue.SP_FIRST, true);
         return isFirstStart;
     }
 
@@ -46,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences getPrefs = PreferenceManager
                 .getDefaultSharedPreferences(getBaseContext());
         SharedPreferences.Editor e = getPrefs.edit();
-        e.putBoolean("firstStart", false);
+        e.putBoolean(ConstantValue.SP_FIRST, false);
         e.apply();
     }
 

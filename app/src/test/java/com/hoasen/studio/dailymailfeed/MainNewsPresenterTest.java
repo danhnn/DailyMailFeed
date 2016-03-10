@@ -26,14 +26,12 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by Harry Nguyen on 05-Mar-16.
  */
-public class MainNewsPresenterTest extends ApplicationTestCase {
+public class MainNewsPresenterTest extends NetworkTestCase {
 
     @Mock
     IDailyMailView view;
     @Mock
     DailyMailAdapter.DailyMailViewHolder viewHolder;
-    @Mock
-    DMAPIService service;
 
     IDailyMailPresenter iDailyMailPresenter;
 
@@ -42,10 +40,6 @@ public class MainNewsPresenterTest extends ApplicationTestCase {
         super.setUp();
         iDailyMailPresenter = spy(new DailyMailPresenterImpl());
         iDailyMailPresenter.setView(view);
-
-        // Inject our test component:
-        AppClientComponent appClientComponent  =  DaggerDMNetworkClientComponentTest.builder().dMNetworkClientModuleTest(new DMNetworkClientModuleTest()).build();
-        ((MyApplication) RuntimeEnvironment.application).setTestComponent(appClientComponent);
     }
 
     @Override

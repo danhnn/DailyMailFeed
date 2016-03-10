@@ -41,7 +41,6 @@ public class DailyMailAdapter extends RecyclerView.Adapter<DailyMailAdapter.Dail
         View itemView = LayoutInflater.
                 from(parent.getContext()).
                 inflate(R.layout.card_view_daily_mail, parent, false);
-
         return new DailyMailViewHolder(itemView);
     }
 
@@ -79,15 +78,13 @@ public class DailyMailAdapter extends RecyclerView.Adapter<DailyMailAdapter.Dail
 
         @Override
         public void onClick(View v) {
-
             if(dailyMailViewHolderClicks != null) {
                 dailyMailViewHolderClicks.onDailyMailClick(this);
             }
         }
-
     }
 
     public  interface IDailyMailViewHolderClicks {
-        public void onDailyMailClick(DailyMailViewHolder viewHolder);
+        void onDailyMailClick(DailyMailViewHolder viewHolder);
     }
 }

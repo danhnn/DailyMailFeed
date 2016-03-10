@@ -23,12 +23,19 @@ public class AppIntroActivity extends AppIntro implements IAppIntroView {
         appintroPresenter = new AppIntroPresenterImpl();
         appintroPresenter.setView(this);
 
+        seUpAppIntroData();
+        setUpAppIntroPlugin();
+    }
+
+    void seUpAppIntroData(){
         List<Bundle> bundleList = appintroPresenter.getIntroData();
 
         for(int i = 0; i < 4; i++) {
             addSlide(AppIntroductionFragment.newInstance(bundleList.get(i)));
         }
+    }
 
+    void setUpAppIntroPlugin(){
         // OPTIONAL METHODS
         // Override bar/separator color.
         setBarColor(Color.parseColor("#3F51B5"));
@@ -43,7 +50,6 @@ public class AppIntroActivity extends AppIntro implements IAppIntroView {
         setVibrate(true);
         setVibrateIntensity(30);
     }
-
 
     @Override
     public void onSkipPressed() {
