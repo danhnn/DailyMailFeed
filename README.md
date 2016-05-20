@@ -8,9 +8,10 @@ Daily Mail Feed
 
 A simple application which demonstrates the fetching data from VnReview website via RSS Feed.
 It applied MVP Architecture, Material design and also some common plugins.
+<br>
 [Google Play Store Link](https://play.google.com/store/apps/details?id=com.hoasen.studio.dailymailfeed&hl=en)
 
-##List plugins using in this project:
+##The project is setup using:
 
 - Functional tests with [Espresso](http://google.github.io/android-testing-support-library/docs/espresso)
 - Unit tests with [Mockito](http://mockito.org/) and [Robolectric](http://robolectric.org/) 
