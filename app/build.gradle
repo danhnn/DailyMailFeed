@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'jacoco'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.hoasen.studio.dailymailfeed"
@@ -97,7 +97,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     // ANDROID SDK Libs:
     compile 'com.android.support:support-annotations:23.2.0'
     compile 'com.android.support:support-v4:23.2.0'
@@ -138,18 +138,17 @@ dependencies {
     }
     //UNIT TEST:
     testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:3.1-SNAPSHOT"
+    testCompile 'org.robolectric:robolectric:3.1-SNAPSHOT'
     testCompile 'org.mockito:mockito-core:2.0.31-beta'
     testCompile 'org.hamcrest:hamcrest-core:1.2.1'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.2.0'
     // UI TEST:
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.0') {
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
-
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
         // Necessary if your app targets Marshmallow (since Espresso
         // hasn't moved to Marshmallow yet)
@@ -160,4 +159,7 @@ dependencies {
         // hasn't moved to Marshmallow yet)
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 }

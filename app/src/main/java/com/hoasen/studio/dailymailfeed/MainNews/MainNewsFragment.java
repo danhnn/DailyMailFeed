@@ -60,6 +60,7 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
         swipeRefreshLayout.setOnRefreshListener(() -> {
             iDailyMailPresenter.loadData();
         });
+
     }
 
     void setupRecycleList() {
@@ -88,7 +89,7 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
     }
 
     @Override
-    public void showNotHaveInternetMsg(){
+    public void showNotHaveInternetMsg() {
         Snackbar.make(mainView, "Please check your internet connection", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }

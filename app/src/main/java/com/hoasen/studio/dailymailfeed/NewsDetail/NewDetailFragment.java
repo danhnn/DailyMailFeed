@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hoasen.studio.dailymailfeed.Base.BaseFragment;
 import com.hoasen.studio.dailymailfeed.NewsDetail.Presenter.INewsDetailPresenter;
@@ -38,7 +39,7 @@ public class NewDetailFragment extends BaseFragment implements INewsDetailView{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
     }
 
     @Override
