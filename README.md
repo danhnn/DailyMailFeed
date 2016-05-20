@@ -5,8 +5,9 @@ Daily Mail Feed
     <img src="https://lh3.googleusercontent.com/V1f3lNWW9DulWTxHXDDPC-n5k536KUoYCvLLJU_UJXB5V3PKgemEQLPHyvnZoRvulZ8=w300-rw" alt="Web Launcher"/>
 </p>
 
-
+<br>
 A simple application which demonstrates the fetching data from VnReview website via RSS Feed.
+<br>
 It applied MVP Architecture, Material design and also some common plugins.
 <br>
 <b>DEMO:</b> [Google Play Store Link](https://play.google.com/store/apps/details?id=com.hoasen.studio.dailymailfeed&hl=en)
