@@ -46,7 +46,7 @@ public class NewDetailFragment extends BaseFragment implements INewsDetailView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mainView = mainView == null ? inflater.inflate(R.layout.fragment_new_detail, container, false) : mainView;
+        View mainView = inflater.inflate(R.layout.fragment_new_detail, container, false);
         ButterKnife.bind(this, mainView);
 
         return mainView;
@@ -87,7 +87,7 @@ public class NewDetailFragment extends BaseFragment implements INewsDetailView{
 
     @Override
     public void showSnackBar() {
-        Snackbar.make(mainView, "Here's a Snackbar", Snackbar.LENGTH_SHORT)
+        Snackbar.make(getView(), "Here's a Snackbar", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
     }
 

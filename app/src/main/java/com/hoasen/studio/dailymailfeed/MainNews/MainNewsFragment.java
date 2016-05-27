@@ -44,7 +44,7 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mainView = mainView == null ? inflater.inflate(R.layout.fragment_main_news, container, false) : mainView;
+        View mainView = inflater.inflate(R.layout.fragment_main_news, container, false);
         ButterKnife.bind(this, mainView);
 
         return mainView;
@@ -72,6 +72,10 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
         adapter = adapter == null ? new DailyMailAdapter(getContext()) : adapter;
         adapter.setListener(MainNewsFragment.this);
         cardList.setAdapter(adapter);
+
+        if(adapter != null){
+            progressbarView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -90,7 +94,7 @@ public class MainNewsFragment extends BaseFragment implements DailyMailAdapter.I
 
     @Override
     public void showNotHaveInternetMsg() {
-        Snackbar.make(mainView, "Please check your internet connection", Snackbar.LENGTH_LONG)
+        Snackbar.make(getView(), "Please check your internet connection", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
 
