@@ -1,4 +1,4 @@
-MVP Feed Example
+Daily Mail Feed
 ===================
 
 <p align="center">
